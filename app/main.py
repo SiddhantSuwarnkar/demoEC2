@@ -88,7 +88,7 @@ def create_app(custom_settings: Settings | None = None) -> FastAPI:
         app.add_middleware(
             CORSMiddleware,
             allow_origins=cors_origins,
-            allow_origin_regex=r"^(https:\/\/.*\.vercel\.app|https:\/\/.*\.ngrok-free\.(dev|app)|http:\/\/localhost:\d+|http:\/\/127\.0\.0\.1:\d+)$",
+            allow_origin_regex=r"^https?:\/\/.*$",
             allow_credentials=not has_wildcard,
             allow_private_network=True,
             allow_methods=["*"],

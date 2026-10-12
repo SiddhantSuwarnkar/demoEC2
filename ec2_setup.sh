@@ -243,7 +243,7 @@ if [ -n "${IMDS_TOKEN}" ]; then
 fi
 
 if [ -z "${EC2_PUBLIC_IP}" ]; then
-    EC2_PUBLIC_IP="$(curl -s https://checkip.amazonaws.com 2>/dev/null || curl -s https://ifconfig.me 2>/dev/null || echo "127.0.0.1")"
+    EC2_PUBLIC_IP="$(curl -s https://checkip.amazonaws.com 2>/dev/null || curl -s https://ifconfig.me 2>/dev/null || echo "0.0.0.0")"
 fi
 
 log_info "EC2 Public IP: ${BOLD}${EC2_PUBLIC_IP}${NC}"

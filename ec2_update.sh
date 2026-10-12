@@ -167,7 +167,7 @@ fi
 # 6. Post-Deployment Health Check & Verification
 # ------------------------------------------------------------------------------
 log_info "Waiting for service to report healthy status..."
-HEALTH_URL="http://127.0.0.1:8000/health/live"
+HEALTH_URL="http://0.0.0.0:8000/health/live"
 IS_HEALTHY=false
 
 for attempt in {1..15}; do
