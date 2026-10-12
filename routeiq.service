@@ -1,0 +1,33 @@
+[Unit]
+Description=RouteIQ / StockSense FastAPI Backend Application Service
+After=network.target network-online.target postgresql.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=ubuntu
+Group=ubuntu
+WorkingDirectory=/home/ubuntu/app
+ExecStart=/bin/bash /home/ubuntu/app/run
+ExecReload=/bin/kill -s HUP $MAINPID
+Restart=always
+RestartSec=5s
+KillMode=mixed
+TimeoutStopSec=30
+
+# Environment Configuration
+Environment="PYTHONUNBUFFERED=1"
+Environment="PATH=/home/ubuntu/app/.venv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin"
+EnvironmentFile=-/home/ubuntu/app/.env
+
+# Output and Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=routeiq
+
+# Process and Resource Limits
+LimitNOFILE=65535
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
